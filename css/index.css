@@ -1,0 +1,45 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 10px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 15px;
+  min-width: 400px;
+}
+
+button {
+  background-color: #4CAF50;
+  border: 2px solid #4CAF50;
+  color: white;
+  padding: 7px 13px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: bold;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+#delete-btn {
+  background: white;
+  color: rgb(240, 66, 66);
+}
+
+ul {
+  margin-top: 10px;
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  margin-top: 5px;
+}
+
+li a {
+  color: #4CAF50;
+}

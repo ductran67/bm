@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "version": "1.0",
+  "name": "Favorite Websites",
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": "/image/icon.png"
+  },
+  "permissions": [
+    "tabs"
+  ]
+}
