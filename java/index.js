@@ -1,34 +1,34 @@
-let infoInput = []
+let infoInput = [];
 
-const saveBtn = document.getElementById("save-btn")
-const ulInfo = document.getElementById("ul-info")
-const myLocalStorage = JSON.parse(localStorage.getItem("myFavoriteWebsite"))
-const deleteBtn = document.getElementById("delete-btn")
-const seldelBtn = document.getElementById("seldel-btn")
+const saveBtn = document.getElementById("save-btn");
+const ulInfo = document.getElementById("ul-info");
+const myLocalStorage = JSON.parse(localStorage.getItem("myFavoriteWebsite"));
+const deleteBtn = document.getElementById("delete-btn");
+const seldelBtn = document.getElementById("seldel-btn");
 
 if (myLocalStorage) {
-  infoInput = myLocalStorage
-  showInfo(infoInput)
+  infoInput = myLocalStorage;
+  showInfo(infoInput);
 }
 
 saveBtn.addEventListener("click", function() {
-  let existURL = false
+  let existURL = false;
   chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
-    let currentTabURL = tabs[0].url
+    let currentTabURL = tabs[0].url;
     // Check if the current tab is already exist
     for (x of infoInput) {
       if (x === currentTabURL) {
-        existURL = true
-        break
+        existURL = true;
+        break;
       }
     }
     if (!existURL) {
       // Add new URL to array infoInput
-      infoInput.push(currentTabURL)
+      infoInput.push(currentTabURL);
       // Save the URL list to local storage "myFavoriteWebsite"
-      localStorage.setItem("myFavoriteWebsite",JSON.stringify(infoInput))
+      localStorage.setItem("myFavoriteWebsite",JSON.stringify(infoInput));
       // call the function to show the list Info
-      showInfo(infoInput)
+      showInfo(infoInput);
     }
   });
 
@@ -36,20 +36,20 @@ saveBtn.addEventListener("click", function() {
 
 deleteBtn.addEventListener("dblclick", function() {
   // Clear localStorage
-  localStorage.clear()
+  localStorage.clear();
   // Set empty for infoInput array
-  infoInput = []
+  infoInput = [];
   // Clear info on the DOM
-  showInfo(infoInput) 
+  showInfo(infoInput); 
 })
 
 seldelBtn.addEventListener("click", function() {
   // Get the length of the current URL list
-  let lenInfo = infoInput.length
+  let lenInfo = infoInput.length;
   // Get all checkbox elements
-  let chkURL = document.getElementsByName("urlCheckBox")
+  let chkURL = document.getElementsByName("urlCheckBox");
   // Create an empty array to store new url list
-  let newURL = []
+  let newURL = [];
   // Scan through the checkbox list to skip all selected items
   for (let i = 0; i < lenInfo; i++) {
     if (!chkURL[i].checked) {
@@ -57,12 +57,14 @@ seldelBtn.addEventListener("click", function() {
       newURL.push(infoInput[i])
     }
   }
+  // Set infoInput = newURL
+  infoInput = newURL
   // Remove item "myFavoriteWebsite" from localStorage
   localStorage.removeItem("myFavoriteWebsite")
   // Store new URL list to local storage
-  localStorage.setItem("myFavoriteWebsite",JSON.stringify(newURL))
+  localStorage.setItem("myFavoriteWebsite",JSON.stringify(infoInput))
   // call the function to show the list Info
-  showInfo(newURL)  
+  showInfo(infoInput)
 })
 
 
