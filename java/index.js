@@ -84,18 +84,5 @@ function showInfo(infoInput) {
     `  
   }
 
-  /*
-  for (x of infoInput) {
-    listInfo +=  `
-      <li>
-        <input type="checkbox" id="${x}" name="${x}" value="${x}">
-        
-        <a href = '${x}' target = '_blank'>
-          ${x} 
-        </a>
-      </li>
-    `
-  } */
-  
   ulInfo.innerHTML = listInfo
 }
